@@ -1,0 +1,23 @@
+.profile {
+  display: flex;
+}
+.profile__column {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.profile__name {
+  margin: 0 0 12px 0;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 32px;
+}
+.profile__description {
+  margin: 0;
+}
+.profile__edit-btn {
+  margin-top: auto;
+}
+.profile__add-btn {
+  margin-left: auto;
+}
