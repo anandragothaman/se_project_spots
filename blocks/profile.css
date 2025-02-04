@@ -3,6 +3,9 @@
   padding-bottom: 20px;
   border-bottom: 1px solid #a5a096;
 }
+.profile__avatar {
+  border-radius: 6px;
+}
 .profile__column {
   display: flex;
   flex-direction: column;
@@ -40,7 +43,15 @@
   font-weight: 500;
   line-height: 16px;
   cursor: pointer;
+  opacity: 70%;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.5s;
 }
+.profile__edit-btn:hover {
+  opacity: 1;
+}
+
 .profile__pencil {
   width: 18px;
   height: 16px;
@@ -48,7 +59,7 @@
 .profile__add-btn {
   margin-left: auto;
   padding: 18px 24px 18px 32px;
-  background: #212121;
+  background-color: #212121;
   color: #fcf5e5;
   border-radius: 8px;
   line-height: 16px;
@@ -56,6 +67,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: background-color 0.5s;
+}
+.profile__add-btn:hover {
+  background-color: #4d4d4d;
 }
 .profile__plus-icon {
   width: 12px;
