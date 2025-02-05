@@ -1,8 +1,7 @@
 .profile {
   display: flex;
-  padding-bottom: 20px;
+  padding: 34px 0 20px 0;
   border-bottom: 1px solid #a5a096;
-  margin-top: 34px;
 }
 .profile__avatar {
   border-radius: 6px;

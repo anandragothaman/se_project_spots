@@ -1,10 +1,9 @@
 .cards {
-  margin-top: 20px;
   display: grid;
   border-bottom: 1px solid #a5a096;
 }
 .cards_list {
-  margin: 0;
+  margin: 20px 0 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
