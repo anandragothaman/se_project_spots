@@ -39,4 +39,4 @@ Its an interactive social media web application where users can add and remove p
 
 **Recorded Video**
 
--[Link to the video](https://drive.google.com/file/d/1dKdyvNiLSQDzYvHfbo4hQh2yEaignHq_/view?usp=drive_link)
+- [Link to the video](https://drive.google.com/file/d/1dKdyvNiLSQDzYvHfbo4hQh2yEaignHq_/view?usp=drive_link)
