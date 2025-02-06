@@ -1,14 +1,15 @@
 .cards {
   display: grid;
-  border-bottom: 1px solid #a5a096;
 }
 .cards_list {
-  margin: 20px 0 0 0;
-  padding: 0;
+  margin: 0;
+  padding: 20px 0 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px 20px;
   padding-bottom: 40px;
+  border-top: 1px solid #a5a096;
+  border-bottom: 1px solid #a5a096;
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .cards {
