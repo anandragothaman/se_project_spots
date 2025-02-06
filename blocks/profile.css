@@ -4,7 +4,7 @@
   border-bottom: 1px solid #a5a096;
 }
 .profile__avatar {
-  border-radius: 6px;
+  border-radius: 8px;
   width: 190px;
   height: 190px;
 }
@@ -25,6 +25,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   line-clamp: 3;
+  color: #212121;
 }
 .profile__description {
   margin: 0;
@@ -35,6 +36,9 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   line-clamp: 3;
+  font-size: 16px;
+  line-height: 16px;
+  color: #212121;
 }
 .profile__edit-btn {
   margin-top: auto;
@@ -50,17 +54,25 @@
   align-items: center;
   transition: opacity 0.5s;
 }
+.profile__edit-btn::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/pencil.svg);
+  margin-right: 8px;
+}
 .profile__edit-btn:hover {
   opacity: 1;
 }
-
 .profile__pencil {
   width: 18px;
   height: 16px;
+  margin-right: 8px;
 }
 .profile__add-btn {
   margin-left: auto;
-  padding: 18px 24px 18px 32px;
+  border: none;
+  padding: 18px 32px 18px 32px;
   background-color: #212121;
   color: #fcf5e5;
   border-radius: 8px;
@@ -69,15 +81,17 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: background-color 0.5s;
+  transition: opacity 0.5s;
 }
-.profile__add-btn:hover {
-  background-color: #4d4d4d;
-}
-.profile__plus-icon {
+.profile__add-btn::before {
+  content: "";
   width: 12px;
   height: 12px;
+  background-image: url(../images/plus.svg);
   margin-right: 8px;
+}
+.profile__add-btn:hover {
+  opacity: 80%;
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile {
@@ -111,6 +125,5 @@
     width: 288px;
     display: flex;
     justify-content: center;
-    padding: 18px 32px 18px 32px;
   }
 }
