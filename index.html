@@ -141,6 +141,33 @@
       <footer class="footer page__section">
         <p class="footer__description">2023 &copy; Spots</p>
       </footer>
+      <div class="modal modal__opened">
+        <div class="modal__container">
+          <button type="submit" class="modal__close-btn"></button>
+          <h3 class="modal__title">Edit Profile</h3>
+          <form action="#" name="edit-profile" class="modal__form">
+            <fieldset class="modal__fieldset">
+              <label for="name" class="modal__label">Name</label>
+              <input
+                type="text"
+                class="modal__input"
+                id="name"
+                placeholder="Type your name"
+              />
+            </fieldset>
+            <fieldset class="modal__fieldset">
+              <label for="description" class="modal__label">Description</label>
+              <input
+                type="text"
+                class="modal__input"
+                id="description"
+                placeholder="Describe yourself"
+              />
+            </fieldset>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
     <script src="./scripts/index.js" defer></script>
   </body>
