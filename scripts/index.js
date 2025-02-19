@@ -24,17 +24,18 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
-const profileFormElement = document.querySelector("#edit-profile");
+const profileFormElement = document.forms["edit-profile"];
 const nameInput = document.querySelector("#name");
 const jobInput = document.querySelector("#description");
 const profileNameElement = document.querySelector(".profile__name");
 const profileJobElement = document.querySelector(".profile__description");
+const modalContainer = document.querySelector("#edit-modal");
+const cardsList = document.querySelector(".cards__list");
 
 function toggleEditModal() {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
-  const modalContainer = document.querySelector("#edit-modal");
-  modalContainer.classList.toggle("modal__opened");
+  modalContainer.classList.toggle("modal_opened");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -45,18 +46,15 @@ function handleProfileFormSubmit(evt) {
 }
 
 function getCardElement(data) {
-  const cardsList = document.querySelector(".cards_list");
-  for (let i = 0; i < data.length; i++) {
-    const cardTemplate = document.querySelector("#card").content;
-    const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-    cardElement.querySelector(".card__image").src = data[i].link;
-    cardElement.querySelector(".card__image").alt = data[i].name;
-    cardElement.querySelector(".card__title").textContent = data[i].name;
-    cardsList.append(cardElement);
-  }
+  const cardTemplate = document.querySelector("#card").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+  return cardElement;
 }
-getCardElement(initialCards);
-
 const editProfileButton = document.querySelector(".profile__edit-btn");
 editProfileButton.addEventListener("click", toggleEditModal);
 
@@ -64,3 +62,8 @@ const closeModalButton = document.querySelector(".modal__close-btn");
 closeModalButton.addEventListener("click", toggleEditModal);
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElement = getCardElement(initialCards[i]);
+  cardsList.append(cardElement);
+}

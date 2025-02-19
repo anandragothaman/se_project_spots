@@ -1,7 +1,7 @@
 .cards {
   display: grid;
 }
-.cards_list {
+.cards__list {
   margin: 0;
   padding: 20px 0 0 0;
   display: grid;
@@ -15,7 +15,7 @@
   .cards {
     justify-content: center;
   }
-  .cards_list {
+  .cards__list {
     grid-template-columns: 1fr;
     gap: 20px 0;
     padding-bottom: 20px;
@@ -23,7 +23,7 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .cards_list {
+  .cards__list {
     grid-template-columns: 1fr 1fr;
   }
 }
