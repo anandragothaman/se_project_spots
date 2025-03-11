@@ -35,16 +35,11 @@
           <ul class="cards__list"></ul>
           <template id="card">
             <li class="card">
+              <button type="button" class="card__delete-button"></button>
               <img src="" alt="" class="card__image" />
               <div class="card__content">
                 <h2 class="card__title"></h2>
-                <button type="button" class="card__like-button">
-                  <img
-                    src="./images/like.svg"
-                    alt="like icon"
-                    class="card__like"
-                  />
-                </button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
           </template>
@@ -55,7 +50,10 @@
       </footer>
       <div class="modal" id="edit-modal">
         <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal__close-edit-btn"
+          ></button>
           <h3 class="modal__title">Edit Profile</h3>
           <form
             action="#"
@@ -79,6 +77,36 @@
                 class="modal__input"
                 id="description"
                 placeholder="Describe yourself"
+              />
+            </fieldset>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" id="post-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            class="modal__close-btn modal__close-post-btn"
+          ></button>
+          <h3 class="modal__title">New Post</h3>
+          <form action="#" id="new-post" name="new-post" class="modal__form">
+            <fieldset class="modal__fieldset">
+              <label for="imageLink" class="modal__label">Image link</label>
+              <input
+                type="text"
+                class="modal__input"
+                id="imageLink"
+                placeholder="Post a link to the picture"
+              />
+            </fieldset>
+            <fieldset class="modal__fieldset">
+              <label for="caption" class="modal__label">Caption</label>
+              <input
+                type="text"
+                class="modal__input"
+                id="caption"
+                placeholder="Type your caption"
               />
             </fieldset>
             <button type="submit" class="modal__submit-btn">Save</button>
