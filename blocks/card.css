@@ -8,6 +8,7 @@
   height: 413px;
   border-radius: 8px;
   object-fit: cover;
+  cursor: pointer;
 }
 .card__content {
   display: flex;
