@@ -155,6 +155,10 @@
   }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
+  .modal__image {
+    width: auto;
+    max-width: 90vw;
+  }
   .modal__caption {
     max-width: 235px;
     font-size: 16px;
