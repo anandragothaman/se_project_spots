@@ -129,7 +129,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.modal__button_disabled {
+.modal__submit-btn_disabled {
   color: #fcf5e5;
   background: #212121;
   opacity: 50%;

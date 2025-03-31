@@ -2,11 +2,9 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__button_disabled",
+  inactiveButtonClass: "modal__submit-btn_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
-  profileNameClass: ".profile__name",
-  profileDescriptionClass: ".profile__description",
 };
 
 function setEventListeners(formElement, config) {
@@ -14,11 +12,11 @@ function setEventListeners(formElement, config) {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector)
   );
-  toggleButtonState(inputList, buttonElement, settings);
+  toggleButtonState(inputList, buttonElement, config);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement, settings);
-      toggleButtonState(inputList, buttonElement, settings);
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 }
@@ -78,11 +76,13 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
     buttonElement?.classList?.add(config.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement?.classList?.remove(config.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
 
 enableValidation(settings);
 
-export { resetValidation, settings };
+export { toggleButtonState, resetValidation, settings };

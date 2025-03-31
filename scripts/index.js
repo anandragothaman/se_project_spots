@@ -1,5 +1,9 @@
-import { resetValidation, settings } from "../scripts/validation.js";
-let initialCards = [
+import {
+  toggleButtonState,
+  resetValidation,
+  settings,
+} from "../scripts/validation.js";
+const initialCards = [
   {
     name: "Golden gate bridge",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
@@ -44,6 +48,7 @@ const captionInput = document.querySelector("#caption");
 const previewImage = previewModal.querySelector(".modal__image");
 const previewTitle = previewModal.querySelector(".modal__caption");
 const modalList = document.querySelectorAll(".modal");
+const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
@@ -60,11 +65,9 @@ function handleKeydownEvent(modal) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  const submitButton = profileFormElement.querySelector(".modal__submit-btn");
   profileNameElement.textContent = nameInput.value;
   profileJobElement.textContent = jobInput.value;
   toggleModal(editModal);
-  submitButton.classList.add("modal__button_disabled");
 }
 
 function getCardElement(data) {
@@ -97,15 +100,14 @@ function getCardElement(data) {
 
 function handlePostFormSubmit(evt) {
   evt.preventDefault();
-  const submitButton = postFormElement.querySelector(".modal__submit-btn");
+  const submitButton = evt.submitter;
   const newCard = {};
   newCard.name = captionInput.value;
   newCard.link = imageLinkInput.value;
-  const newCardElement = getCardElement(newCard);
-  cardsList.prepend(newCardElement);
+  renderCard(newCard, "prepend");
   toggleModal(postModal);
   evt.target.reset();
-  submitButton.classList.add("modal__button_disabled");
+  toggleButtonState([captionInput, imageLinkInput], submitButton, settings);
 }
 
 function renderCard(item, method = "prepend") {
@@ -121,9 +123,9 @@ editProfileButton.addEventListener("click", () => {
   toggleModal(editModal);
 });
 
-const profileCloseButton = document.querySelector(".modal__close-edit-btn");
-profileCloseButton.addEventListener("click", () => {
-  toggleModal(editModal);
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => toggleModal(popup));
 });
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
@@ -135,16 +137,6 @@ initialCards.forEach((initialCard) => {
 const profileAddButton = document.querySelector(".profile__add-btn");
 profileAddButton.addEventListener("click", () => {
   toggleModal(postModal);
-});
-
-const newPostCloseButton = document.querySelector(".modal__close-post-btn");
-newPostCloseButton.addEventListener("click", () => {
-  toggleModal(postModal);
-});
-
-const previewCloseButton = document.querySelector(".modal__close-type-preview");
-previewCloseButton.addEventListener("click", () => {
-  toggleModal(previewModal);
 });
 
 postFormElement.addEventListener("submit", handlePostFormSubmit);
