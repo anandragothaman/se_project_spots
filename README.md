@@ -27,6 +27,8 @@ Its an interactive social media web application where users can add and remove p
 - Flat BEM file structure
 - Responsive design
 - Desktop, tablet and mobile design
+- Javascript
+- Form Validation
 
 **Images**
 
