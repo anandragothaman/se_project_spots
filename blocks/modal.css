@@ -64,6 +64,7 @@
   border: none;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .modal__label {
   margin-bottom: 8px;
@@ -88,6 +89,9 @@
 }
 .modal__input::placeholder {
   opacity: 30%;
+}
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
 }
 .modal__submit-btn {
   border-radius: 8px;
@@ -124,6 +128,26 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.modal__button_disabled {
+  color: #fcf5e5;
+  background: #212121;
+  opacity: 50%;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.modal__input-error {
+  font-size: 16px;
+  color: #ff0000;
+  opacity: 0;
+  margin-top: 8px;
+  transition: 0.3s;
+}
+.modal__error_visible {
+  opacity: 70%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1023px) {

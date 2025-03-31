@@ -60,6 +60,7 @@
             id="edit-profile"
             name="edit-profile"
             class="modal__form"
+            novalidate
           >
             <fieldset class="modal__fieldset">
               <label for="name" class="modal__label">Name</label>
@@ -68,7 +69,11 @@
                 class="modal__input"
                 id="name"
                 placeholder="Type your name"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span class="modal__input-error name-error"></span>
             </fieldset>
             <fieldset class="modal__fieldset">
               <label for="description" class="modal__label">Description</label>
@@ -77,7 +82,11 @@
                 class="modal__input"
                 id="description"
                 placeholder="Describe yourself"
+                minlength="2"
+                maxlength="200"
+                required
               />
+              <span class="modal__input-error description-error"></span>
             </fieldset>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -90,15 +99,23 @@
             class="modal__close-btn modal__close-post-btn"
           ></button>
           <h3 class="modal__title">New Post</h3>
-          <form action="#" id="new-post" name="new-post" class="modal__form">
+          <form
+            action="#"
+            id="new-post"
+            name="new-post"
+            class="modal__form"
+            novalidate
+          >
             <fieldset class="modal__fieldset">
               <label for="imageLink" class="modal__label">Image link</label>
               <input
-                type="text"
+                type="url"
                 class="modal__input"
                 id="imageLink"
                 placeholder="Post a link to the picture"
+                required
               />
+              <span class="modal__input-error imageLink-error"></span>
             </fieldset>
             <fieldset class="modal__fieldset">
               <label for="caption" class="modal__label">Caption</label>
@@ -107,7 +124,11 @@
                 class="modal__input"
                 id="caption"
                 placeholder="Type your caption"
+                minlength="2"
+                maxlength="30"
+                required
               />
+              <span class="modal__input-error caption-error"></span>
             </fieldset>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -124,6 +145,7 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/index.js" defer></script>
+    <script type="module" src="./scripts/validation.js" defer></script>
+    <script type="module" src="./scripts/index.js" defer></script>
   </body>
 </html>

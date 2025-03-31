@@ -1,3 +1,4 @@
+import { resetValidation, settings } from "../scripts/validation.js";
 let initialCards = [
   {
     name: "Golden gate bridge",
@@ -42,16 +43,28 @@ const imageLinkInput = document.querySelector("#imageLink");
 const captionInput = document.querySelector("#caption");
 const previewImage = previewModal.querySelector(".modal__image");
 const previewTitle = previewModal.querySelector(".modal__caption");
+const modalList = document.querySelectorAll(".modal");
 
 function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
+  handleKeydownEvent(modal);
+}
+
+function handleKeydownEvent(modal) {
+  if (modal.classList.contains("modal_opened")) {
+    document.addEventListener("keydown", closeModalOnEscape);
+  } else {
+    document.removeEventListener("keydown", closeModalOnEscape);
+  }
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  const submitButton = profileFormElement.querySelector(".modal__submit-btn");
   profileNameElement.textContent = nameInput.value;
   profileJobElement.textContent = jobInput.value;
   toggleModal(editModal);
+  submitButton.classList.add("modal__button_disabled");
 }
 
 function getCardElement(data) {
@@ -84,6 +97,7 @@ function getCardElement(data) {
 
 function handlePostFormSubmit(evt) {
   evt.preventDefault();
+  const submitButton = postFormElement.querySelector(".modal__submit-btn");
   const newCard = {};
   newCard.name = captionInput.value;
   newCard.link = imageLinkInput.value;
@@ -91,6 +105,7 @@ function handlePostFormSubmit(evt) {
   cardsList.prepend(newCardElement);
   toggleModal(postModal);
   evt.target.reset();
+  submitButton.classList.add("modal__button_disabled");
 }
 
 function renderCard(item, method = "prepend") {
@@ -102,6 +117,7 @@ const editProfileButton = document.querySelector(".profile__edit-btn");
 editProfileButton.addEventListener("click", () => {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
+  resetValidation(profileFormElement, [nameInput, jobInput], settings);
   toggleModal(editModal);
 });
 
@@ -132,3 +148,22 @@ previewCloseButton.addEventListener("click", () => {
 });
 
 postFormElement.addEventListener("submit", handlePostFormSubmit);
+
+function closeModalOnOverlay(evt, modal) {
+  if (evt.target === modal) {
+    toggleModal(modal);
+  }
+}
+
+function closeModalOnEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      toggleModal(openedModal);
+    }
+  }
+}
+
+modalList.forEach((modal) => {
+  modal.addEventListener("click", (evt) => closeModalOnOverlay(evt, modal));
+});
