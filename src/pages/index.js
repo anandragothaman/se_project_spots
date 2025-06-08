@@ -1,7 +1,9 @@
+import "./index.css";
 import {
   toggleButtonState,
   resetValidation,
   settings,
+  enableValidation,
 } from "../scripts/validation.js";
 const initialCards = [
   {
@@ -159,3 +161,5 @@ function closeModalOnEscape(evt) {
 modalList.forEach((modal) => {
   modal.addEventListener("click", (evt) => closeModalOnOverlay(evt, modal));
 });
+
+enableValidation(settings);
