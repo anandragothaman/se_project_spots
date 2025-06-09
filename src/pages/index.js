@@ -1,43 +1,37 @@
 import "./index.css";
+import Api from "../utils/Api.js";
 import {
   toggleButtonState,
   resetValidation,
   settings,
   enableValidation,
 } from "../scripts/validation.js";
-const initialCards = [
-  {
-    name: "Golden gate bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "9cdd6a42-f1f2-470f-aae3-a3aeb4ec8482",
+    "Content-Type": "application/json",
   },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+});
+
+api
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    cards.forEach((initialCard) => {
+      renderCard(initialCard, "append");
+    });
+    profileNameElement.textContent = userInfo.name;
+    profileJobElement.textContent = userInfo.about;
+    profileAvatar.src = userInfo.avatar;
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 const profileFormElement = document.forms["edit-profile"];
 const nameInput = document.querySelector("#name");
 const jobInput = document.querySelector("#description");
+const profileAvatar = document.querySelector(".profile__avatar");
 const profileNameElement = document.querySelector(".profile__name");
 const profileJobElement = document.querySelector(".profile__description");
 const editModal = document.querySelector("#edit-modal");
@@ -67,9 +61,14 @@ function handleKeydownEvent(modal) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileNameElement.textContent = nameInput.value;
-  profileJobElement.textContent = jobInput.value;
-  toggleModal(editModal);
+  api
+    .editUserInfo({ name: nameInput.value, about: jobInput.value })
+    .then((data) => {
+      profileNameElement.textContent = data.name;
+      profileJobElement.textContent = data.about;
+      toggleModal(editModal);
+    })
+    .catch((err) => console.error(err));
 }
 
 function getCardElement(data) {
@@ -131,10 +130,6 @@ closeButtons.forEach((button) => {
 });
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-initialCards.forEach((initialCard) => {
-  renderCard(initialCard, "append");
-});
 
 const profileAddButton = document.querySelector(".profile__add-btn");
 profileAddButton.addEventListener("click", () => {
