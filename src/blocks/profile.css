@@ -21,6 +21,10 @@
   align-items: flex-end;
   justify-content: center;
   visibility: hidden;
+  padding-bottom: 12px;
+}
+.profile__pencil-icon {
+  margin-right: 8px;
 }
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
@@ -152,5 +156,13 @@
     width: 288px;
     display: flex;
     justify-content: center;
+  }
+  .profile__pencil-icon {
+    background: #21212199;
+    padding: 4px;
+    border-radius: 6px;
+    position: absolute;
+    right: -5px;
+    bottom: 5px;
   }
 }
