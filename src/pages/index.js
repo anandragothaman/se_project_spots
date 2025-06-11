@@ -141,14 +141,13 @@ function handlePostFormSubmit(evt) {
   api
     .addNewCards({ name: captionInput.value, link: imageLinkInput.value })
     .then((data) => {
-      const submitButton = evt.submitter;
       const newCard = {};
       newCard.name = data.name;
       newCard.link = data.link;
-      renderCard(newCard, "prepend");
+      renderCard(data, "prepend");
       toggleModal(postModal);
       evt.target.reset();
-      toggleButtonState([captionInput, imageLinkInput], submitButton, settings);
+      toggleButtonState([captionInput, imageLinkInput], submitBtn, settings);
     })
     .catch((err) => console.error(err))
     .finally(() => {
